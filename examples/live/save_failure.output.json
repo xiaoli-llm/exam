@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "model": {
+    "mode": "compatible",
+    "name": "deepseek-flash",
+    "evidence_boundary": "live_model"
+  },
+  "max_steps": 12,
+  "tool_calls": 4,
+  "result": {
+    "material_id": "M01",
+    "status": "failed",
+    "reason": "save_draft at the requested slot returned save_failed_injected; no draft was saved and no publication occurred.",
+    "review": {
+      "status": "approved",
+      "risks": [],
+      "missing": []
+    },
+    "requested_slot": "2026-11-01T18:00:00+08:00",
+    "suggested_slot": null,
+    "pending_items": [],
+    "confirmation_status": "not_applicable",
+    "save_status": "failed",
+    "draft_id": null,
+    "publication_status": "not_published"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-10-30T04:00:01.437122+00:00",
+      "action": "read_material",
+      "arguments": {},
+      "reason": "Start by reading the material to review its content before scheduling.",
+      "observation": {
+        "ok": true,
+        "material": {
+          "title": "秋日活动",
+          "text": "周末来参加摄影分享活动。",
+          "owner": "合成内容团队",
+          "rights": "cleared"
+        }
+      },
+      "model_response": {
+        "id": "aec3d103-eb64-4dcd-b97d-d10e3f2468aa",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 409,
+          "completion_tokens": 26,
+          "total_tokens": 435,
+          "prompt_tokens_details": {
+            "cached_tokens": 128
+          },
+          "prompt_cache_hit_tokens": 128,
+          "prompt_cache_miss_tokens": 281
+        }
+      }
+    },
+    {
+      "step": 2,
+      "at": "2026-10-30T04:00:02.202591+00:00",
+      "action": "check_rules",
+      "arguments": {},
+      "reason": "Material read; verify scheduling rules before querying slots.",
+      "observation": {
+        "ok": true,
+        "status": "approved",
+        "risks": [],
+        "missing": []
+      },
+      "model_response": {
+        "id": "9767d7dc-16c0-4346-8c4d-5a92d6ba0047",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 625,
+          "completion_tokens": 25,
+          "total_tokens": 650,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 241
+        }
+      }
+    },
+    {
+      "step": 3,
+      "at": "2026-10-30T04:00:03.196780+00:00",
+      "action": "query_slots",
+      "arguments": {},
+      "reason": "Material approved with no risks or missing metadata; query availability for the requested and candidate slots.",
+      "observation": {
+        "ok": true,
+        "available": [
+          "2026-11-01T18:00:00+08:00",
+          "2026-11-01T19:00:00+08:00"
+        ],
+        "occupied": []
+      },
+      "model_response": {
+        "id": "91267905-c519-4ede-b39d-100de0d88ee5",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 820,
+          "completion_tokens": 32,
+          "total_tokens": 852,
+          "prompt_tokens_details": {
+            "cached_tokens": 512
+          },
+          "prompt_cache_hit_tokens": 512,
+          "prompt_cache_miss_tokens": 308
+        }
+      }
+    },
+    {
+      "step": 4,
+      "at": "2026-10-30T04:00:04.357535+00:00",
+      "action": "save_draft",
+      "arguments": {
+        "slot": "2026-11-01T18:00:00+08:00"
+      },
+      "reason": "Material approved with no risks; requested slot is available and hard_time, so save draft there.",
+      "observation": {
+        "ok": false,
+        "error": "save_failed_injected"
+      },
+      "model_response": {
+        "id": "9e57f1d1-5752-47c1-b9c5-f99321b717a8",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1043,
+          "completion_tokens": 51,
+          "total_tokens": 1094,
+          "prompt_tokens_details": {
+            "cached_tokens": 768
+          },
+          "prompt_cache_hit_tokens": 768,
+          "prompt_cache_miss_tokens": 275
+        }
+      }
+    },
+    {
+      "step": 5,
+      "at": "2026-10-30T04:00:05.756070+00:00",
+      "action": "finish",
+      "arguments": {
+        "status": "failed",
+        "reason": "save_draft at the requested slot returned save_failed_injected; no draft was saved and no publication occurred."
+      },
+      "reason": "Saving failed with an injected error; per policy, end as failed rather than repeat the failed action.",
+      "observation": {
+        "ok": true,
+        "status": "failed"
+      },
+      "model_response": {
+        "id": "ad9c858f-55ff-4def-b514-b59a4d397e3e",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 1261,
+          "completion_tokens": 63,
+          "total_tokens": 1324,
+          "prompt_tokens_details": {
+            "cached_tokens": 1024
+          },
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 237
+        }
+      }
+    }
+  ]
+}

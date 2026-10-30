@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-10-30T04:01:43.451241+00:00",
+  "mode": "mock",
+  "evidence_boundary": "flow_only_not_real_model_decisions",
+  "cases": [
+    {
+      "case": "normal",
+      "expected": "completed",
+      "actual": "completed",
+      "draft_count": 1,
+      "passed": true,
+      "input": "normal.input.json",
+      "trace_and_output": "normal.output.json"
+    },
+    {
+      "case": "missing",
+      "expected": "needs_information",
+      "actual": "needs_information",
+      "draft_count": 0,
+      "passed": true,
+      "input": "missing.input.json",
+      "trace_and_output": "missing.output.json"
+    },
+    {
+      "case": "risk",
+      "expected": "blocked",
+      "actual": "blocked",
+      "draft_count": 0,
+      "passed": true,
+      "input": "risk.input.json",
+      "trace_and_output": "risk.output.json"
+    },
+    {
+      "case": "conflict",
+      "expected": "pending_confirmation",
+      "actual": "pending_confirmation",
+      "draft_count": 1,
+      "passed": true,
+      "input": "conflict.input.json",
+      "trace_and_output": "conflict.output.json"
+    },
+    {
+      "case": "repeat",
+      "expected": "completed",
+      "actual": "completed",
+      "draft_count": 1,
+      "passed": true,
+      "input": "repeat.input.json",
+      "trace_and_output": "repeat.output.json"
+    },
+    {
+      "case": "save_failure",
+      "expected": "failed",
+      "actual": "failed",
+      "draft_count": 0,
+      "passed": true,
+      "input": "save_failure.input.json",
+      "trace_and_output": "save_failure.output.json"
+    },
+    {
+      "case": "supplement",
+      "expected": "completed",
+      "actual": "completed",
+      "draft_count": 1,
+      "passed": true,
+      "input": "supplement.input.json",
+      "trace_and_output": "supplement.output.json"
+    },
+    {
+      "case": "limit",
+      "expected": "incomplete",
+      "actual": "incomplete",
+      "draft_count": 0,
+      "passed": true,
+      "input": "limit.input.json",
+      "trace_and_output": "limit.output.json"
+    },
+    {
+      "case": "approved",
+      "expected": "completed",
+      "actual": "completed",
+      "draft_count": 1,
+      "passed": true,
+      "input": "approved.input.json",
+      "trace_and_output": "approved.output.json"
+    },
+    {
+      "case": "occupancy_changed",
+      "expected": "completed",
+      "actual": "completed",
+      "draft_count": 1,
+      "passed": true,
+      "input": "occupancy_changed.input.json",
+      "trace_and_output": "occupancy_changed.output.json"
+    }
+  ],
+  "tests_exit_code": 0
+}

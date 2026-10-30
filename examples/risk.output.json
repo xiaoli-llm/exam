@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "model": {
+    "mode": "mock",
+    "name": "offline-deterministic-mock",
+    "evidence_boundary": "flow_only"
+  },
+  "max_steps": 12,
+  "tool_calls": 2,
+  "result": {
+    "material_id": "M03",
+    "status": "blocked",
+    "reason": "存在规则风险，阻断排期",
+    "review": {
+      "status": "blocked",
+      "risks": [
+        "forbidden:保证收益"
+      ],
+      "missing": []
+    },
+    "requested_slot": "2026-11-01T18:00:00+08:00",
+    "suggested_slot": null,
+    "pending_items": [],
+    "confirmation_status": "not_applicable",
+    "save_status": "not_saved",
+    "draft_id": null,
+    "publication_status": "not_published"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-10-30T04:01:42.445148+00:00",
+      "action": "read_material",
+      "arguments": {},
+      "reason": "读取素材后再判断所需检查",
+      "observation": {
+        "ok": true,
+        "material": {
+          "title": "风险宣传",
+          "text": "购买本课程保证收益。",
+          "owner": "合成内容团队",
+          "rights": "cleared"
+        }
+      }
+    },
+    {
+      "step": 2,
+      "at": "2026-10-30T04:01:42.445148+00:00",
+      "action": "check_rules",
+      "arguments": {},
+      "reason": "检查最新素材的必填信息与风险",
+      "observation": {
+        "ok": true,
+        "status": "blocked",
+        "risks": [
+          "forbidden:保证收益"
+        ],
+        "missing": []
+      }
+    },
+    {
+      "step": 3,
+      "at": "2026-10-30T04:01:42.445148+00:00",
+      "action": "finish",
+      "arguments": {
+        "status": "blocked",
+        "reason": "存在规则风险，阻断排期"
+      },
+      "reason": "存在规则风险，阻断排期",
+      "observation": {
+        "ok": true,
+        "status": "blocked"
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "model": {
+    "mode": "compatible",
+    "name": "deepseek-flash",
+    "evidence_boundary": "live_model"
+  },
+  "max_steps": 2,
+  "tool_calls": 2,
+  "result": {
+    "material_id": "M01",
+    "status": "incomplete",
+    "reason": "step_limit_reached",
+    "review": {
+      "status": "approved",
+      "risks": [],
+      "missing": []
+    },
+    "requested_slot": "2026-11-01T18:00:00+08:00",
+    "suggested_slot": null,
+    "pending_items": [],
+    "confirmation_status": "not_applicable",
+    "save_status": "not_saved",
+    "draft_id": null,
+    "publication_status": "not_published"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-10-30T04:00:14.415059+00:00",
+      "action": "read_material",
+      "arguments": {},
+      "reason": "Start by reading the material to review its content before scheduling.",
+      "observation": {
+        "ok": true,
+        "material": {
+          "title": "秋日活动",
+          "text": "周末来参加摄影分享活动。",
+          "owner": "合成内容团队",
+          "rights": "cleared"
+        }
+      },
+      "model_response": {
+        "id": "2c6adc06-abb3-491a-b31b-1cac74e2df83",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 407,
+          "completion_tokens": 26,
+          "total_tokens": 433,
+          "prompt_tokens_details": {
+            "cached_tokens": 128
+          },
+          "prompt_cache_hit_tokens": 128,
+          "prompt_cache_miss_tokens": 279
+        }
+      }
+    },
+    {
+      "step": 2,
+      "at": "2026-10-30T04:00:15.574472+00:00",
+      "action": "check_rules",
+      "arguments": {},
+      "reason": "Material read; verify scheduling rules before querying slots.",
+      "observation": {
+        "ok": true,
+        "status": "approved",
+        "risks": [],
+        "missing": []
+      },
+      "model_response": {
+        "id": "82731243-0a45-412b-b803-1f9a8a1e5b56",
+        "model": "deepseek-flash",
+        "usage": {
+          "prompt_tokens": 624,
+          "completion_tokens": 25,
+          "total_tokens": 649,
+          "prompt_tokens_details": {
+            "cached_tokens": 384
+          },
+          "prompt_cache_hit_tokens": 384,
+          "prompt_cache_miss_tokens": 240
+        }
+      }
+    }
+  ]
+}

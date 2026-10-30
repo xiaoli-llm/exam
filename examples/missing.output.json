@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "model": {
+    "mode": "mock",
+    "name": "offline-deterministic-mock",
+    "evidence_boundary": "flow_only"
+  },
+  "max_steps": 12,
+  "tool_calls": 4,
+  "result": {
+    "material_id": "M02",
+    "status": "needs_information",
+    "reason": "补查后仍缺少必填信息",
+    "review": {
+      "status": "needs_information",
+      "risks": [],
+      "missing": [
+        "owner"
+      ]
+    },
+    "requested_slot": "2026-11-01T18:00:00+08:00",
+    "suggested_slot": null,
+    "pending_items": [
+      "owner"
+    ],
+    "confirmation_status": "not_applicable",
+    "save_status": "not_saved",
+    "draft_id": null,
+    "publication_status": "not_published"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-10-30T04:01:42.431130+00:00",
+      "action": "read_material",
+      "arguments": {},
+      "reason": "读取素材后再判断所需检查",
+      "observation": {
+        "ok": true,
+        "material": {
+          "title": "缺失负责人",
+          "text": "活动预告",
+          "rights": "cleared"
+        }
+      }
+    },
+    {
+      "step": 2,
+      "at": "2026-10-30T04:01:42.431130+00:00",
+      "action": "check_rules",
+      "arguments": {},
+      "reason": "检查最新素材的必填信息与风险",
+      "observation": {
+        "ok": true,
+        "status": "needs_information",
+        "risks": [],
+        "missing": [
+          "owner"
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "at": "2026-10-30T04:01:42.431130+00:00",
+      "action": "lookup_metadata",
+      "arguments": {},
+      "reason": "发现信息缺失，补查元数据",
+      "observation": {
+        "ok": true,
+        "found": false,
+        "material": {
+          "title": "缺失负责人",
+          "text": "活动预告",
+          "rights": "cleared"
+        }
+      }
+    },
+    {
+      "step": 4,
+      "at": "2026-10-30T04:01:42.431130+00:00",
+      "action": "check_rules",
+      "arguments": {},
+      "reason": "检查最新素材的必填信息与风险",
+      "observation": {
+        "ok": true,
+        "status": "needs_information",
+        "risks": [],
+        "missing": [
+          "owner"
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "at": "2026-10-30T04:01:42.431130+00:00",
+      "action": "finish",
+      "arguments": {
+        "status": "needs_information",
+        "reason": "补查后仍缺少必填信息"
+      },
+      "reason": "补查后仍缺少必填信息",
+      "observation": {
+        "ok": true,
+        "status": "needs_information"
+      }
+    }
+  ]
+}

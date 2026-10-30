@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "model": {
+    "mode": "mock",
+    "name": "offline-deterministic-mock",
+    "evidence_boundary": "flow_only"
+  },
+  "max_steps": 12,
+  "tool_calls": 4,
+  "result": {
+    "material_id": "M01",
+    "status": "completed",
+    "reason": "依据保存工具实际回执结束，仅保存草稿",
+    "review": {
+      "status": "approved",
+      "risks": [],
+      "missing": []
+    },
+    "requested_slot": "2026-11-01T18:00:00+08:00",
+    "suggested_slot": "2026-11-01T18:00:00+08:00",
+    "pending_items": [],
+    "confirmation_status": "not_required",
+    "save_status": "saved",
+    "draft_id": 1,
+    "publication_status": "not_published"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "at": "2026-10-30T04:01:42.407819+00:00",
+      "action": "read_material",
+      "arguments": {},
+      "reason": "读取素材后再判断所需检查",
+      "observation": {
+        "ok": true,
+        "material": {
+          "title": "秋日活动",
+          "text": "周末来参加摄影分享活动。",
+          "owner": "合成内容团队",
+          "rights": "cleared"
+        }
+      }
+    },
+    {
+      "step": 2,
+      "at": "2026-10-30T04:01:42.407819+00:00",
+      "action": "check_rules",
+      "arguments": {},
+      "reason": "检查最新素材的必填信息与风险",
+      "observation": {
+        "ok": true,
+        "status": "approved",
+        "risks": [],
+        "missing": []
+      }
+    },
+    {
+      "step": 3,
+      "at": "2026-10-30T04:01:42.407819+00:00",
+      "action": "query_slots",
+      "arguments": {},
+      "reason": "审核通过，查询实际可用时段",
+      "observation": {
+        "ok": true,
+        "available": [
+          "2026-11-01T18:00:00+08:00",
+          "2026-11-01T19:00:00+08:00"
+        ],
+        "occupied": []
+      }
+    },
+    {
+      "step": 4,
+      "at": "2026-10-30T04:01:42.415854+00:00",
+      "action": "save_draft",
+      "arguments": {
+        "slot": "2026-11-01T18:00:00+08:00"
+      },
+      "reason": "按查询结果选择可用时段，硬性变更保留待确认",
+      "observation": {
+        "ok": true,
+        "draft_id": 1,
+        "material_id": "M01",
+        "channel": "article",
+        "requested_slot": "2026-11-01T18:00:00+08:00",
+        "suggested_slot": "2026-11-01T18:00:00+08:00",
+        "confirmation_status": "not_required",
+        "pending_items": [],
+        "publication_status": "not_published",
+        "save_status": "saved"
+      }
+    },
+    {
+      "step": 5,
+      "at": "2026-10-30T04:01:42.415854+00:00",
+      "action": "finish",
+      "arguments": {
+        "status": "completed",
+        "reason": "依据保存工具实际回执结束，仅保存草稿"
+      },
+      "reason": "依据保存工具实际回执结束，仅保存草稿",
+      "observation": {
+        "ok": true,
+        "status": "completed"
+      }
+    }
+  ]
+}

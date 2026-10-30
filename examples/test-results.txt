@@ -1,0 +1,26 @@
+test_bad_model_output_and_no_fallback (test_agent.AgentTests.test_bad_model_output_and_no_fallback) ... ok
+test_cannot_forge_success_or_publish (test_agent.AgentTests.test_cannot_forge_success_or_publish) ... ok
+test_cannot_save_unchecked_or_outside_slot (test_agent.AgentTests.test_cannot_save_unchecked_or_outside_slot) ... ok
+test_cannot_skip_review (test_agent.AgentTests.test_cannot_skip_review) ... ok
+test_changed_occupancy_changes_decision (test_agent.AgentTests.test_changed_occupancy_changes_decision) ... ok
+test_conflict_requires_confirmation (test_agent.AgentTests.test_conflict_requires_confirmation) ... ok
+test_explicit_approval (test_agent.AgentTests.test_explicit_approval) ... ok
+test_input_validation (test_agent.AgentTests.test_input_validation) ... ok
+test_limit (test_agent.AgentTests.test_limit) ... ok
+test_live_adapter_round_trip_contract (test_agent.AgentTests.test_live_adapter_round_trip_contract) ... ok
+test_malformed_finish_and_slot_are_rejected (test_agent.AgentTests.test_malformed_finish_and_slot_are_rejected) ... ok
+test_missing_and_supplement (test_agent.AgentTests.test_missing_and_supplement) ... ok
+test_no_slots (test_agent.AgentTests.test_no_slots) ... ok
+test_normal (test_agent.AgentTests.test_normal) ... ok
+test_not_found (test_agent.AgentTests.test_not_found) ... ok
+test_recheck_conflict_at_commit (test_agent.AgentTests.test_recheck_conflict_at_commit) ... ok
+test_repeat_and_changed_key (test_agent.AgentTests.test_repeat_and_changed_key) ... ok
+test_rule_risk_and_rights (test_agent.AgentTests.test_rule_risk_and_rights) ... ok
+test_same_instant_cannot_bypass_conflict (test_agent.AgentTests.test_same_instant_cannot_bypass_conflict) ... ok
+test_save_failure (test_agent.AgentTests.test_save_failure) ... ok
+test_soft_time (test_agent.AgentTests.test_soft_time) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.424s
+
+OK
