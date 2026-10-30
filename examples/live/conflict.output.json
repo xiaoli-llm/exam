@@ -10,7 +10,7 @@
   "result": {
     "material_id": "M01",
     "status": "pending_confirmation",
-    "reason": "Draft saved at 2026-11-01T19:00:00+08:00 as a pending proposal; requested hard-time slot 18:00 is occupied and not approved, so confirmation of the hard-time change is required. Not published.",
+    "reason": "Draft saved at available candidate 2026-11-01T19:00:00+08:00; requested 18:00 is occupied and the hard-time change requires confirmation (approved_slots empty). Not published.",
     "review": {
       "status": "approved",
       "risks": [],
@@ -29,7 +29,7 @@
   "trace": [
     {
       "step": 1,
-      "at": "2026-10-30T03:59:48.039011+00:00",
+      "at": "2026-10-30T04:20:13.627976+00:00",
       "action": "read_material",
       "arguments": {},
       "reason": "Start by reading the material to review its content before scheduling.",
@@ -43,26 +43,26 @@
         }
       },
       "model_response": {
-        "id": "822bdfbf-33af-4116-a515-a898bf0027c3",
+        "id": "268afc9a-8c2a-4b51-a05a-33cf0861fa7d",
         "model": "deepseek-flash",
         "usage": {
           "prompt_tokens": 408,
           "completion_tokens": 26,
           "total_tokens": 434,
           "prompt_tokens_details": {
-            "cached_tokens": 128
+            "cached_tokens": 256
           },
-          "prompt_cache_hit_tokens": 128,
-          "prompt_cache_miss_tokens": 280
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 152
         }
       }
     },
     {
       "step": 2,
-      "at": "2026-10-30T03:59:48.834193+00:00",
+      "at": "2026-10-30T04:20:14.944379+00:00",
       "action": "check_rules",
       "arguments": {},
-      "reason": "Material read; verify scheduling rules before slot handling.",
+      "reason": "Material read and rights cleared; verify scheduling rules before slot handling.",
       "observation": {
         "ok": true,
         "status": "approved",
@@ -70,26 +70,26 @@
         "missing": []
       },
       "model_response": {
-        "id": "3880ea42-2095-4c84-bf7c-97b20778904e",
+        "id": "38cfc291-9856-46df-a2de-84159cd81344",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 620,
-          "completion_tokens": 24,
-          "total_tokens": 644,
+          "prompt_tokens": 626,
+          "completion_tokens": 27,
+          "total_tokens": 653,
           "prompt_tokens_details": {
             "cached_tokens": 384
           },
           "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 236
+          "prompt_cache_miss_tokens": 242
         }
       }
     },
     {
       "step": 3,
-      "at": "2026-10-30T03:59:49.586085+00:00",
+      "at": "2026-10-30T04:20:15.803718+00:00",
       "action": "query_slots",
       "arguments": {},
-      "reason": "Material approved with no risks; check slot availability for the hard-time request.",
+      "reason": "Rules approved with no risks; check availability of requested and candidate slots.",
       "observation": {
         "ok": true,
         "available": [
@@ -100,56 +100,28 @@
         ]
       },
       "model_response": {
-        "id": "bb0201ad-45ef-4b82-afdd-858c1d0b6935",
+        "id": "cd05311f-cd40-4bd4-aeb5-96bf6de3fc3d",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 810,
-          "completion_tokens": 29,
-          "total_tokens": 839,
+          "prompt_tokens": 816,
+          "completion_tokens": 28,
+          "total_tokens": 844,
           "prompt_tokens_details": {
             "cached_tokens": 512
           },
           "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 298
+          "prompt_cache_miss_tokens": 304
         }
       }
     },
     {
       "step": 4,
-      "at": "2026-10-30T03:59:50.733764+00:00",
-      "action": "finish",
-      "arguments": {
-        "status": "pending_confirmation",
-        "reason": "Requested hard-time slot 2026-11-01T18:00:00+08:00 is occupied and not in approved_slots; alternative 19:00 is available but a hard-time change requires approval, so no draft saved."
-      },
-      "reason": "Hard-time slot conflict; alternative requires approval before saving.",
-      "observation": {
-        "ok": false,
-        "error": "cannot_finish_success_without_saved_draft"
-      },
-      "model_response": {
-        "id": "5c8f5862-3faf-4379-8d8c-88ac79a5be0c",
-        "model": "deepseek-flash",
-        "usage": {
-          "prompt_tokens": 1033,
-          "completion_tokens": 83,
-          "total_tokens": 1116,
-          "prompt_tokens_details": {
-            "cached_tokens": 768
-          },
-          "prompt_cache_hit_tokens": 768,
-          "prompt_cache_miss_tokens": 265
-        }
-      }
-    },
-    {
-      "step": 5,
-      "at": "2026-10-30T03:59:51.835715+00:00",
+      "at": "2026-10-30T04:20:16.857774+00:00",
       "action": "save_draft",
       "arguments": {
         "slot": "2026-11-01T19:00:00+08:00"
       },
-      "reason": "Requested hard-time slot 18:00 is occupied and not approved; 19:00 is available, so save a draft there as a pending proposal.",
+      "reason": "Requested 18:00 is occupied; 19:00 candidate is available. Hard-time change to 19:00 is a pending proposal since approved_slots is empty, so save draft at the available candidate.",
       "observation": {
         "ok": true,
         "draft_id": 1,
@@ -165,27 +137,27 @@
         "save_status": "saved"
       },
       "model_response": {
-        "id": "7c750416-48fd-4e62-9c58-2ababdf4e818",
+        "id": "563dd7ee-2bd5-48c9-8c91-c50797c039da",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1294,
-          "completion_tokens": 64,
-          "total_tokens": 1358,
+          "prompt_tokens": 1038,
+          "completion_tokens": 76,
+          "total_tokens": 1114,
           "prompt_tokens_details": {
-            "cached_tokens": 1024
+            "cached_tokens": 768
           },
-          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_hit_tokens": 768,
           "prompt_cache_miss_tokens": 270
         }
       }
     },
     {
-      "step": 6,
-      "at": "2026-10-30T03:59:52.743939+00:00",
+      "step": 5,
+      "at": "2026-10-30T04:20:17.741361+00:00",
       "action": "finish",
       "arguments": {
         "status": "pending_confirmation",
-        "reason": "Draft saved at 2026-11-01T19:00:00+08:00 as a pending proposal; requested hard-time slot 18:00 is occupied and not approved, so confirmation of the hard-time change is required. Not published."
+        "reason": "Draft saved at available candidate 2026-11-01T19:00:00+08:00; requested 18:00 is occupied and the hard-time change requires confirmation (approved_slots empty). Not published."
       },
       "reason": "Draft save succeeded with pending hard-time change confirmation.",
       "observation": {
@@ -193,17 +165,17 @@
         "status": "pending_confirmation"
       },
       "model_response": {
-        "id": "ea4b69c2-c03b-4289-9a12-f21b12994345",
+        "id": "b8eea852-7edb-425d-aa27-01a794553115",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1623,
-          "completion_tokens": 85,
-          "total_tokens": 1708,
+          "prompt_tokens": 1376,
+          "completion_tokens": 79,
+          "total_tokens": 1455,
           "prompt_tokens_details": {
-            "cached_tokens": 1280
+            "cached_tokens": 1024
           },
-          "prompt_cache_hit_tokens": 1280,
-          "prompt_cache_miss_tokens": 343
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 352
         }
       }
     }

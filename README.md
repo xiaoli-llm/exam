@@ -2,7 +2,7 @@
 
 帮助内容团队审核素材、发现冲突、形成可确认的排期草稿。**只保存草稿，永不发布。**
 
-当前交付状态：22 项自动测试通过；10 组离线场景和 10 组 DeepSeek `deepseek-flash` 真实模型场景达到预期。分别见 `examples/evaluation-summary.json` 与 `examples/live/evaluation-summary.json`，不能用 Mock 记录替代真实模型决策证据。最终提交 SHA 以 GitHub 提交记录为准。
+当前交付状态：25 项自动测试通过；10 组离线场景和 10 组 DeepSeek `deepseek-flash` 真实模型场景达到预期。分别见 `examples/evaluation-summary.json` 与 `examples/live/evaluation-summary.json`，不能用 Mock 记录替代真实模型决策证据。最终提交 SHA 以 GitHub 提交记录为准。
 
 ## 评审入口
 
@@ -11,6 +11,7 @@
 3. `src/core.py`：审核、时段、确认边界、事务防重与保存工具。
 4. `examples/evaluation-summary.json` 和 `examples/*.output.json`：实际结果与逐步 Trace。
 5. `docs/03-evaluation.md`：逐项验收、失败和限制。
+6. `docs/06-compliance-audit.md`：考核规则逐条复核、修复记录及个人材料边界。
 
 ## 环境与安装
 
@@ -35,7 +36,7 @@ python examples/run_examples.py
 python examples/verify_evidence.py
 ```
 
-最后一条命令使用隔离数据库重建全部离线证据与测试报告，不覆盖真实模型证据。再次执行同一 CLI 请求和同一数据库会返回已有草稿；不会新增草稿。失败、阻断、资料不足和步数耗尽返回退出码 2，参数/配置错误返回 1，草稿成功或待确认返回 0。待确认并不等于用户已批准。
+最后一条命令校验已有证据；`python examples/run_examples.py` 使用隔离数据库重建全部离线证据与测试报告，不覆盖真实模型证据。再次执行同一 CLI 请求和同一数据库会返回已有草稿；不会新增草稿。失败、阻断、资料不足和步数耗尽返回退出码 2，参数/配置错误返回 1，草稿成功或待确认返回 0。待确认并不等于用户已批准。
 
 保存失败复现：
 
@@ -71,7 +72,7 @@ python examples/run_examples.py --model compatible
 
 结果包括审核状态、风险、缺失信息、原始时间、建议时间、待确认项、确认状态、真实保存状态、草稿 ID 和 `not_published`。Trace 每步记录动作、参数、工具返回、后续动作及简要依据，不要求或记录模型内部思维过程。
 
-硬性时间 18:00 被占用而 19:00 可用时，建议 19:00 并保存待确认草稿，原始要求仍是 18:00。收到用户确认后，以**新 request_id** 和 `approved_slots` 创建修订请求；相同幂等键的输入变更会被拒绝。当前版本不提供旧草稿修改/撤销接口，详情见限制说明。
+硬性时间 18:00 被占用而 19:00 可用时，建议 19:00 并保存待确认草稿，原始要求仍是 18:00。`approved_slots` 支持在首次请求时传入已取得的用户确认。当前版本不支持把已有待确认草稿原地更新为已确认；另建请求也不会自动释放旧草稿占位。相同幂等键的输入变更会被拒绝，完整确认/更新流程见限制说明。
 
 ## 边界
 

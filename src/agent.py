@@ -1,5 +1,6 @@
 """Bounded observe/decide/act loop with authoritative final projection."""
 from datetime import datetime, timezone
+from copy import deepcopy
 
 
 def run(tools, model, max_steps=12):
@@ -39,7 +40,7 @@ def run(tools, model, max_steps=12):
             observation = tools.execute(action, args)
         history.append({'step': step, 'at': datetime.now(timezone.utc).isoformat(),
                         'action': action, 'arguments': args, 'reason': decision['reason'],
-                        'observation': observation})
+                        'observation': deepcopy(observation)})
         if hasattr(model, 'last_call'):
             history[-1]['model_response'] = model.last_call
         if action == 'finish' and observation.get('ok'):

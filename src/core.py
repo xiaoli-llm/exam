@@ -9,9 +9,12 @@ def timestamp(value):
     if not isinstance(value, str):
         raise ValueError('slot must be a string')
     dt = datetime.fromisoformat(value)
-    if dt.tzinfo is None or dt.minute or dt.second or dt.microsecond:
+    if dt.tzinfo is None:
         raise ValueError('slots must be timezone-aware full hours')
-    return dt.astimezone(timezone(timedelta(hours=8))).isoformat()
+    normalized = dt.astimezone(timezone(timedelta(hours=8)))
+    if normalized.minute or normalized.second or normalized.microsecond:
+        raise ValueError('slots must be full hours in Asia/Shanghai')
+    return normalized.isoformat()
 
 
 def validate_request(request):

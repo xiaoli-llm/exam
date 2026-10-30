@@ -39,6 +39,11 @@ def main():
                 assert result['review']['risks']
             if case['case'] == 'missing':
                 assert result['review']['missing'] and result['pending_items']
+            if case['case'] == 'supplement':
+                read = next(s for s in output['trace'] if s['action'] == 'read_material')
+                supplement = next(s for s in output['trace'] if s['action'] == 'lookup_metadata')
+                assert 'owner' not in read['observation']['material']
+                assert supplement['observation']['material']['owner']
             if case['case'] == 'save_failure':
                 assert result['save_status'] == 'failed'
             if case['case'] == 'repeat':

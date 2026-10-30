@@ -15,13 +15,16 @@ test_no_slots (test_agent.AgentTests.test_no_slots) ... ok
 test_normal (test_agent.AgentTests.test_normal) ... ok
 test_not_found (test_agent.AgentTests.test_not_found) ... ok
 test_recheck_conflict_at_commit (test_agent.AgentTests.test_recheck_conflict_at_commit) ... ok
+test_repeat_across_new_sessions (test_agent.AgentTests.test_repeat_across_new_sessions) ... ok
 test_repeat_and_changed_key (test_agent.AgentTests.test_repeat_and_changed_key) ... ok
 test_rule_risk_and_rights (test_agent.AgentTests.test_rule_risk_and_rights) ... ok
 test_same_instant_cannot_bypass_conflict (test_agent.AgentTests.test_same_instant_cannot_bypass_conflict) ... ok
 test_save_failure (test_agent.AgentTests.test_save_failure) ... ok
+test_slot_must_be_whole_hour_after_normalization (test_agent.AgentTests.test_slot_must_be_whole_hour_after_normalization) ... ok
 test_soft_time (test_agent.AgentTests.test_soft_time) ... ok
+test_trace_preserves_observation_before_supplement (test_agent.AgentTests.test_trace_preserves_observation_before_supplement) ... ok
 
 ----------------------------------------------------------------------
-Ran 22 tests in 0.703s
+Ran 25 tests in 0.775s
 
 OK

@@ -33,14 +33,14 @@ python examples/verify_evidence.py
 
 离线 Trace 的正常路径为读取→检查→查时段→保存→结束；缺失路径为读取→检查→补查→重查→请求补充；冲突路径的 save_draft 参数变为 19:00。它们证明数据影响测试策略，但**不构成真实模型 ReAct 验收证据**。
 
-真实模型入口：`python examples/run_examples.py --model compatible`。2026-10-30 已使用用户指定的 DeepSeek `deepseek-flash`，关闭 thinking、temperature=0，实际完成 10 组场景（重复提交包括首次和第二次执行）。服务通过 GET /models 确认可用。真实模型汇总见 [live/evaluation-summary.json](../examples/live/evaluation-summary.json)，测试报告见 [live/test-results.txt](../examples/live/test-results.txt)。10 组均达到表中预期，22 项自动测试通过。`verify_evidence.py` 还核对真实保存回执、草稿数量、确认状态、原始时间、风险、请求标识与步数上限。
+真实模型入口：`python examples/run_examples.py --model compatible`。2026-10-30 已使用用户指定的 DeepSeek `deepseek-flash`，关闭 thinking、temperature=0，实际完成 10 组场景（重复提交包括首次和第二次执行）。服务通过 GET /models 确认可用。真实模型汇总见 [live/evaluation-summary.json](../examples/live/evaluation-summary.json)，测试报告见 [live/test-results.txt](../examples/live/test-results.txt)。10 组均达到表中预期，25 项自动测试通过。`verify_evidence.py` 还核对真实保存回执、草稿数量、确认状态、原始时间、风险、请求标识与步数上限。
 
 ### 真实动态路径与失败纠正
 
 - [正常路径](../examples/live/normal.output.json)：读取 → 审核 → 查询 → 保存 18:00 → 结束。
 - [缺失路径](../examples/live/missing.output.json)：读取后模型发现缺少 owner，直接选择补查 → 审核仍报告缺失 → needs_information，未保存。该顺序与离线策略不同。
 - [补查成功](../examples/live/supplement.output.json)：读取 → 审核发现缺失 → 补查 → 重新审核 → 查询 → 保存 → 结束。
-- [冲突与纠正](../examples/live/conflict.output.json)：查询发现 18:00 占用、19:00 可用；第 4 步模型先尝试 finish，执行器返回 `cannot_finish_success_without_saved_draft`；第 5 步模型根据失败回执选择保存 19:00，第 6 步返回 pending_confirmation。保留了这次错误与纠正，没有删除失败步骤或宣称模型首轮决策完美。
+- [当前冲突路径](../examples/live/conflict.output.json)：查询发现 18:00 占用、19:00 可用，保存 19:00 的待确认草稿后结束。[首次冲突与纠正](../examples/live/initial-conflict-recovery.output.json)：第 4 步模型先尝试 finish，执行器返回 `cannot_finish_success_without_saved_draft`；第 5 步模型根据失败回执选择保存 19:00，第 6 步返回 pending_confirmation。保留了这次错误与纠正，没有删除失败步骤或宣称模型首轮决策完美。
 - [风险](../examples/live/risk.output.json)：检查发现禁词后阻断。
 - [保存失败](../examples/live/save_failure.output.json)：模型观察 save_failed_injected 后结束 failed，无新增草稿。
 - [重复](../examples/live/repeat.first.json)、[再次提交](../examples/live/repeat.output.json)：同一 ID，仅一份草稿，第二次返回 existing。
@@ -54,10 +54,11 @@ python examples/verify_evidence.py
 2. 时区表示可能导致同一时刻绕过唯一约束：统一转为 UTC+08:00，增加跨时区冲突测试。
 3. 非法 finish 的状态字段可能为对象：增加类型检查，确保被拒绝并计入上限。
 4. 导出后独立运行检查发现 Windows 管道输出默认 GBK，无法作为 UTF-8 JSON 解码：CLI 显式设置 UTF-8，增加真实子进程回归测试。
+5. 考核复核发现 Trace 中素材对象引用被后续补查改写，改为深拷贝并重新运行全部证据；重复提交改为关闭连接后重开会话验证；时段改为转换时区后校验整点。详见 [逐条复核](06-compliance-audit.md)。
 
 ## 限制
 
-- 当前是单次小样本真实模型验证，没有稳定性统计或跨模型比较；模型结果存在不确定性，必须保留失败案例。
+- 当前仅做少量场景运行，没有稳定性统计或跨模型比较；模型结果存在不确定性，必须保留失败案例。
 - 仅单渠道整点一小时槽位，无跨时段时长、节假日、优先级或批量最优排程。
 - 规则仅覆盖合成禁词和版权字段，不能证明真实合规能力。
 - 候选时段必须由用户提供；全部占用时返回 blocked，并在 reason 说明需要新时段，未自动扩展硬性范围。

@@ -90,6 +90,28 @@ class AgentTests(unittest.TestCase):
                 self.assertEqual(out['result']['status'], expected)
                 self.assertIn('lookup_metadata', [s['action'] for s in out['trace']])
 
+    def test_trace_preserves_observation_before_supplement(self):
+        out = run(self.tools(request(material_id='M04')), MockModel())
+        read = next(s for s in out['trace'] if s['action'] == 'read_material')
+        supplement = next(s for s in out['trace'] if s['action'] == 'lookup_metadata')
+        self.assertNotIn('owner', read['observation']['material'])
+        self.assertIn('owner', supplement['observation']['material'])
+
+    def test_repeat_across_new_sessions(self):
+        first_tools = self.tools()
+        first = run(first_tools, MockModel())
+        first_tools.close()
+        self.opened.remove(first_tools)
+        second = run(self.tools(), MockModel())
+        self.assertEqual(second['result']['save_status'], 'existing')
+        self.assertEqual(first['result']['draft_id'], second['result']['draft_id'])
+
+    def test_slot_must_be_whole_hour_after_normalization(self):
+        with self.assertRaises(ValueError):
+            self.tools(request(requested_slot='2026-11-01T18:00:00+05:30'))
+        tools = self.tools(request(requested_slot='2026-11-01T15:30:00+05:30'))
+        self.assertEqual(tools.request['requested_slot'], S18)
+
     def test_rule_risk_and_rights(self):
         for material in ['M03', 'M05']:
             with self.subTest(material=material):

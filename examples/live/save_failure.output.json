@@ -10,7 +10,7 @@
   "result": {
     "material_id": "M01",
     "status": "failed",
-    "reason": "save_draft at the requested slot returned save_failed_injected; no draft was saved and no publication occurred.",
+    "reason": "Draft save failed with save_failed_injected; no saved state to confirm.",
     "review": {
       "status": "approved",
       "risks": [],
@@ -27,7 +27,7 @@
   "trace": [
     {
       "step": 1,
-      "at": "2026-10-30T04:00:01.437122+00:00",
+      "at": "2026-10-30T04:20:27.969437+00:00",
       "action": "read_material",
       "arguments": {},
       "reason": "Start by reading the material to review its content before scheduling.",
@@ -41,26 +41,26 @@
         }
       },
       "model_response": {
-        "id": "aec3d103-eb64-4dcd-b97d-d10e3f2468aa",
+        "id": "a14ebd9f-fb1a-4e0c-aeb9-0a0ce23c3826",
         "model": "deepseek-flash",
         "usage": {
           "prompt_tokens": 409,
           "completion_tokens": 26,
           "total_tokens": 435,
           "prompt_tokens_details": {
-            "cached_tokens": 128
+            "cached_tokens": 256
           },
-          "prompt_cache_hit_tokens": 128,
-          "prompt_cache_miss_tokens": 281
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 153
         }
       }
     },
     {
       "step": 2,
-      "at": "2026-10-30T04:00:02.202591+00:00",
+      "at": "2026-10-30T04:20:28.545035+00:00",
       "action": "check_rules",
       "arguments": {},
-      "reason": "Material read; verify scheduling rules before querying slots.",
+      "reason": "Material read and rights cleared; check scheduling rules before querying slots.",
       "observation": {
         "ok": true,
         "status": "approved",
@@ -68,26 +68,26 @@
         "missing": []
       },
       "model_response": {
-        "id": "9767d7dc-16c0-4346-8c4d-5a92d6ba0047",
+        "id": "117f11f4-aa25-4c0b-94bf-1b07bfcfadc0",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 625,
-          "completion_tokens": 25,
-          "total_tokens": 650,
+          "prompt_tokens": 629,
+          "completion_tokens": 28,
+          "total_tokens": 657,
           "prompt_tokens_details": {
             "cached_tokens": 384
           },
           "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 241
+          "prompt_cache_miss_tokens": 245
         }
       }
     },
     {
       "step": 3,
-      "at": "2026-10-30T04:00:03.196780+00:00",
+      "at": "2026-10-30T04:20:29.546751+00:00",
       "action": "query_slots",
       "arguments": {},
-      "reason": "Material approved with no risks or missing metadata; query availability for the requested and candidate slots.",
+      "reason": "Rules approved with no risks or missing metadata; query availability for the requested and candidate slots.",
       "observation": {
         "ok": true,
         "available": [
@@ -97,72 +97,72 @@
         "occupied": []
       },
       "model_response": {
-        "id": "91267905-c519-4ede-b39d-100de0d88ee5",
+        "id": "e02eec10-8641-432f-9306-5d8b737c01fb",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 820,
+          "prompt_tokens": 826,
           "completion_tokens": 32,
-          "total_tokens": 852,
+          "total_tokens": 858,
           "prompt_tokens_details": {
             "cached_tokens": 512
           },
           "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 308
+          "prompt_cache_miss_tokens": 314
         }
       }
     },
     {
       "step": 4,
-      "at": "2026-10-30T04:00:04.357535+00:00",
+      "at": "2026-10-30T04:20:30.279883+00:00",
       "action": "save_draft",
       "arguments": {
         "slot": "2026-11-01T18:00:00+08:00"
       },
-      "reason": "Material approved with no risks; requested slot is available and hard_time, so save draft there.",
+      "reason": "Material reviewed, rules approved with no risks, and requested slot is available.",
       "observation": {
         "ok": false,
         "error": "save_failed_injected"
       },
       "model_response": {
-        "id": "9e57f1d1-5752-47c1-b9c5-f99321b717a8",
+        "id": "c2c3129d-c29c-45dd-8037-538f1ede9c7c",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1043,
-          "completion_tokens": 51,
-          "total_tokens": 1094,
+          "prompt_tokens": 1053,
+          "completion_tokens": 47,
+          "total_tokens": 1100,
           "prompt_tokens_details": {
             "cached_tokens": 768
           },
           "prompt_cache_hit_tokens": 768,
-          "prompt_cache_miss_tokens": 275
+          "prompt_cache_miss_tokens": 285
         }
       }
     },
     {
       "step": 5,
-      "at": "2026-10-30T04:00:05.756070+00:00",
+      "at": "2026-10-30T04:20:31.087752+00:00",
       "action": "finish",
       "arguments": {
         "status": "failed",
-        "reason": "save_draft at the requested slot returned save_failed_injected; no draft was saved and no publication occurred."
+        "reason": "Draft save failed with save_failed_injected; no saved state to confirm."
       },
-      "reason": "Saving failed with an injected error; per policy, end as failed rather than repeat the failed action.",
+      "reason": "Save attempt returned an error, so scheduling cannot be completed.",
       "observation": {
         "ok": true,
         "status": "failed"
       },
       "model_response": {
-        "id": "ad9c858f-55ff-4def-b514-b59a4d397e3e",
+        "id": "ffd49870-2086-4c4d-9d5b-af42f5ace709",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1261,
-          "completion_tokens": 63,
-          "total_tokens": 1324,
+          "prompt_tokens": 1266,
+          "completion_tokens": 48,
+          "total_tokens": 1314,
           "prompt_tokens_details": {
             "cached_tokens": 1024
           },
           "prompt_cache_hit_tokens": 1024,
-          "prompt_cache_miss_tokens": 237
+          "prompt_cache_miss_tokens": 242
         }
       }
     }

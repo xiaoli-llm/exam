@@ -54,6 +54,8 @@ def main():
                 if name == 'repeat':
                     first = run(tools, model, limit)
                     (folder / 'repeat.first.json').write_text(json.dumps(first, ensure_ascii=False, indent=2), encoding='utf-8')
+                    tools.close()
+                    tools = Tools(req, case_data, Path(temp) / f'{name}.sqlite', fail)
                 out = run(tools, model, limit)
                 count = tools.db.execute('SELECT COUNT(*) FROM drafts').fetchone()[0]
             finally:

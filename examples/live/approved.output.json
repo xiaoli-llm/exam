@@ -10,7 +10,7 @@
   "result": {
     "material_id": "M01",
     "status": "completed",
-    "reason": "Material approved with no risks; requested 18:00 slot occupied, saved draft at approved available 19:00 slot (draft_id 1, not published).",
+    "reason": "Draft saved successfully at approved slot 2026-11-01T19:00:00+08:00 (requested 18:00 was occupied); publication not performed.",
     "review": {
       "status": "approved",
       "risks": [],
@@ -27,7 +27,7 @@
   "trace": [
     {
       "step": 1,
-      "at": "2026-10-30T04:00:16.510555+00:00",
+      "at": "2026-10-30T04:20:39.210720+00:00",
       "action": "read_material",
       "arguments": {},
       "reason": "Start by reading the material to review its content before scheduling.",
@@ -41,26 +41,26 @@
         }
       },
       "model_response": {
-        "id": "1281d236-63fa-45ac-94e7-edfe70841992",
+        "id": "27e0cea4-451a-431d-8991-ea5350bcef0d",
         "model": "deepseek-flash",
         "usage": {
           "prompt_tokens": 424,
           "completion_tokens": 26,
           "total_tokens": 450,
           "prompt_tokens_details": {
-            "cached_tokens": 128
+            "cached_tokens": 256
           },
-          "prompt_cache_hit_tokens": 128,
-          "prompt_cache_miss_tokens": 296
+          "prompt_cache_hit_tokens": 256,
+          "prompt_cache_miss_tokens": 168
         }
       }
     },
     {
       "step": 2,
-      "at": "2026-10-30T04:00:17.402677+00:00",
+      "at": "2026-10-30T04:20:39.857943+00:00",
       "action": "check_rules",
       "arguments": {},
-      "reason": "Material read; verify scheduling rules before choosing a slot.",
+      "reason": "Material read and rights cleared; check scheduling rules before choosing a slot.",
       "observation": {
         "ok": true,
         "status": "approved",
@@ -68,26 +68,26 @@
         "missing": []
       },
       "model_response": {
-        "id": "89ad1020-051e-450c-80f9-8296e2c2cf8b",
+        "id": "517ff5ce-f7be-4260-a8eb-15ac47ef272c",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 636,
-          "completion_tokens": 25,
-          "total_tokens": 661,
+          "prompt_tokens": 640,
+          "completion_tokens": 28,
+          "total_tokens": 668,
           "prompt_tokens_details": {
             "cached_tokens": 384
           },
           "prompt_cache_hit_tokens": 384,
-          "prompt_cache_miss_tokens": 252
+          "prompt_cache_miss_tokens": 256
         }
       }
     },
     {
       "step": 3,
-      "at": "2026-10-30T04:00:18.377507+00:00",
+      "at": "2026-10-30T04:20:40.702292+00:00",
       "action": "query_slots",
       "arguments": {},
-      "reason": "Material approved with no risks; check slot availability before saving.",
+      "reason": "Material approved with no risks; query availability for the requested and candidate slots.",
       "observation": {
         "ok": true,
         "available": [
@@ -98,28 +98,28 @@
         ]
       },
       "model_response": {
-        "id": "00f0a2b2-d0ea-41cd-9ded-6202a714d122",
+        "id": "2d11aade-5ff5-4f83-a1fa-6c38eb79c519",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 829,
-          "completion_tokens": 26,
-          "total_tokens": 855,
+          "prompt_tokens": 832,
+          "completion_tokens": 29,
+          "total_tokens": 861,
           "prompt_tokens_details": {
             "cached_tokens": 512
           },
           "prompt_cache_hit_tokens": 512,
-          "prompt_cache_miss_tokens": 317
+          "prompt_cache_miss_tokens": 320
         }
       }
     },
     {
       "step": 4,
-      "at": "2026-10-30T04:00:19.272599+00:00",
+      "at": "2026-10-30T04:20:41.519810+00:00",
       "action": "save_draft",
       "arguments": {
         "slot": "2026-11-01T19:00:00+08:00"
       },
-      "reason": "Requested slot is occupied; approved_slots contains the available 19:00 slot, so save the draft there.",
+      "reason": "Requested slot 18:00 is occupied; 19:00 is available and in approved_slots, so it satisfies the hard-time constraint.",
       "observation": {
         "ok": true,
         "draft_id": 1,
@@ -133,45 +133,45 @@
         "save_status": "saved"
       },
       "model_response": {
-        "id": "636c6be7-cbab-4a1e-8cea-43bf172367fe",
+        "id": "b086c86c-c8f1-48af-833d-2294f1b9876d",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1049,
-          "completion_tokens": 56,
-          "total_tokens": 1105,
+          "prompt_tokens": 1056,
+          "completion_tokens": 62,
+          "total_tokens": 1118,
           "prompt_tokens_details": {
             "cached_tokens": 768
           },
           "prompt_cache_hit_tokens": 768,
-          "prompt_cache_miss_tokens": 281
+          "prompt_cache_miss_tokens": 288
         }
       }
     },
     {
       "step": 5,
-      "at": "2026-10-30T04:00:20.074964+00:00",
+      "at": "2026-10-30T04:20:42.493445+00:00",
       "action": "finish",
       "arguments": {
         "status": "completed",
-        "reason": "Material approved with no risks; requested 18:00 slot occupied, saved draft at approved available 19:00 slot (draft_id 1, not published)."
+        "reason": "Draft saved successfully at approved slot 2026-11-01T19:00:00+08:00 (requested 18:00 was occupied); publication not performed."
       },
-      "reason": "Draft successfully saved to the approved alternative slot.",
+      "reason": "Save succeeded with save_status saved and no pending items.",
       "observation": {
         "ok": true,
         "status": "completed"
       },
       "model_response": {
-        "id": "6267ca75-fa83-47d1-9bef-538565d66e95",
+        "id": "a4681e31-9de2-40e9-a48b-2fa331f82ad9",
         "model": "deepseek-flash",
         "usage": {
-          "prompt_tokens": 1362,
-          "completion_tokens": 63,
-          "total_tokens": 1425,
+          "prompt_tokens": 1378,
+          "completion_tokens": 68,
+          "total_tokens": 1446,
           "prompt_tokens_details": {
             "cached_tokens": 1024
           },
           "prompt_cache_hit_tokens": 1024,
-          "prompt_cache_miss_tokens": 338
+          "prompt_cache_miss_tokens": 354
         }
       }
     }

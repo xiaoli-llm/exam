@@ -14,5 +14,13 @@
     "offline_cases": 10,
     "live_model_cases": 10,
     "model": "deepseek-flash"
+  },
+  "followup_audit_validation": {
+    "recorded_at": "2026-10-30T12:22:34.142039+08:00",
+    "unit_tests": 25,
+    "offline_cases": 10,
+    "live_model_cases": 10,
+    "timing": "Follow-up audit duration was not separately measured; initial elapsed_minutes remains unchanged.",
+    "report": "docs/06-compliance-audit.md"
   }
 }
