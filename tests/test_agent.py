@@ -1,6 +1,8 @@
 import json
 import tempfile
 import unittest
+import subprocess
+import sys
 from pathlib import Path
 from unittest.mock import patch
 from src.agent import run
@@ -56,6 +58,15 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(out['result']['publication_status'], 'not_published')
         self.assertEqual([s['action'] for s in out['trace']],
                          ['read_material', 'check_rules', 'query_slots', 'save_draft', 'finish'])
+
+    def test_cli_redirected_output_is_utf8_json(self):
+        process = subprocess.run([sys.executable, '-m', 'src.cli', '--input',
+                                  'examples/normal.input.json', '--db', str(self.db)],
+                                 cwd=ROOT, capture_output=True)
+        self.assertEqual(process.returncode, 0)
+        result = json.loads(process.stdout.decode('utf-8'))
+        self.assertEqual(result['result']['status'], 'completed')
+        self.assertEqual(result['trace'][0]['observation']['material']['title'], self.data['materials']['M01']['title'])
 
     def test_conflict_requires_confirmation(self):
         out = run(self.tools(request(channel='video')), MockModel())

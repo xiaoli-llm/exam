@@ -3,6 +3,7 @@ test_cannot_forge_success_or_publish (test_agent.AgentTests.test_cannot_forge_su
 test_cannot_save_unchecked_or_outside_slot (test_agent.AgentTests.test_cannot_save_unchecked_or_outside_slot) ... ok
 test_cannot_skip_review (test_agent.AgentTests.test_cannot_skip_review) ... ok
 test_changed_occupancy_changes_decision (test_agent.AgentTests.test_changed_occupancy_changes_decision) ... ok
+test_cli_redirected_output_is_utf8_json (test_agent.AgentTests.test_cli_redirected_output_is_utf8_json) ... ok
 test_conflict_requires_confirmation (test_agent.AgentTests.test_conflict_requires_confirmation) ... ok
 test_explicit_approval (test_agent.AgentTests.test_explicit_approval) ... ok
 test_input_validation (test_agent.AgentTests.test_input_validation) ... ok
@@ -21,6 +22,6 @@ test_save_failure (test_agent.AgentTests.test_save_failure) ... ok
 test_soft_time (test_agent.AgentTests.test_soft_time) ... ok
 
 ----------------------------------------------------------------------
-Ran 21 tests in 0.395s
+Ran 22 tests in 0.703s
 
 OK

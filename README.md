@@ -2,7 +2,7 @@
 
 帮助内容团队审核素材、发现冲突、形成可确认的排期草稿。**只保存草稿，永不发布。**
 
-当前交付状态：21 项自动测试通过；10 组离线场景和 10 组 DeepSeek `deepseek-flash` 真实模型场景达到预期。分别见 `examples/evaluation-summary.json` 与 `examples/live/evaluation-summary.json`，不能用 Mock 记录替代真实模型决策证据。最终提交 SHA 以 GitHub 提交记录为准。
+当前交付状态：22 项自动测试通过；10 组离线场景和 10 组 DeepSeek `deepseek-flash` 真实模型场景达到预期。分别见 `examples/evaluation-summary.json` 与 `examples/live/evaluation-summary.json`，不能用 Mock 记录替代真实模型决策证据。最终提交 SHA 以 GitHub 提交记录为准。
 
 ## 评审入口
 

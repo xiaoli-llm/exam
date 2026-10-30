@@ -9,6 +9,9 @@ from .models import JsonModel, MockModel, load_config
 
 
 def main():
+    # Keep redirected JSON portable on Windows where the console default may be GBK.
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description='Review materials and save schedule drafts; never publish.')
     parser.add_argument('--input', required=True, type=Path)
     parser.add_argument('--data', type=Path, default=Path('data/catalog.json'))

@@ -33,7 +33,7 @@ python examples/verify_evidence.py
 
 离线 Trace 的正常路径为读取→检查→查时段→保存→结束；缺失路径为读取→检查→补查→重查→请求补充；冲突路径的 save_draft 参数变为 19:00。它们证明数据影响测试策略，但**不构成真实模型 ReAct 验收证据**。
 
-真实模型入口：`python examples/run_examples.py --model compatible`。2026-10-30 已使用用户指定的 DeepSeek `deepseek-flash`，关闭 thinking、temperature=0，实际完成 10 组场景（重复提交包括首次和第二次执行）。服务通过 GET /models 确认可用。真实模型汇总见 [live/evaluation-summary.json](../examples/live/evaluation-summary.json)，测试报告见 [live/test-results.txt](../examples/live/test-results.txt)。10 组均达到表中预期，21 项自动测试通过。`verify_evidence.py` 还核对真实保存回执、草稿数量、确认状态、原始时间、风险、请求标识与步数上限。
+真实模型入口：`python examples/run_examples.py --model compatible`。2026-10-30 已使用用户指定的 DeepSeek `deepseek-flash`，关闭 thinking、temperature=0，实际完成 10 组场景（重复提交包括首次和第二次执行）。服务通过 GET /models 确认可用。真实模型汇总见 [live/evaluation-summary.json](../examples/live/evaluation-summary.json)，测试报告见 [live/test-results.txt](../examples/live/test-results.txt)。10 组均达到表中预期，22 项自动测试通过。`verify_evidence.py` 还核对真实保存回执、草稿数量、确认状态、原始时间、风险、请求标识与步数上限。
 
 ### 真实动态路径与失败纠正
 
@@ -53,6 +53,7 @@ python examples/verify_evidence.py
 1. 初次测试写入系统临时目录失败：改为项目 work/ 下的隔离临时目录，完整重跑通过。
 2. 时区表示可能导致同一时刻绕过唯一约束：统一转为 UTC+08:00，增加跨时区冲突测试。
 3. 非法 finish 的状态字段可能为对象：增加类型检查，确保被拒绝并计入上限。
+4. 导出后独立运行检查发现 Windows 管道输出默认 GBK，无法作为 UTF-8 JSON 解码：CLI 显式设置 UTF-8，增加真实子进程回归测试。
 
 ## 限制
 
